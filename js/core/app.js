@@ -56,7 +56,7 @@
     document.body.innerHTML = `
       <header class="top">
         <button class="menu" aria-label="Menü">☰</button>
-        <a href="#/" class="brand"><span class="logo">OR II</span><span class="bt">Quiz Hazırlık <small>Bölüm 1 – 6</small></span></a>
+        <a href="#/" class="brand"><span class="logo">OR 2</span><span class="bt">Asistanı <small>Bölüm 1 – 6</small></span></a>
         <nav class="topnav">
           <a href="#/quiz">🎯 Karışık Quiz</a>
           <a href="#/cheat">📇 Formül Kartı</a>
@@ -109,7 +109,7 @@
       .join('');
     main.innerHTML = `
       <section class="hero">
-        <h1>OR II · Quiz Hazırlık</h1>
+        <h1>OR 2 Asistanı</h1>
         <p>Ders notlarının (Topcu &amp; Kabak) tamamı: <b>IP formülasyonu ve çözümü</b>, <b>Goal Programming</b>,
         <b>Nonlinear Programming</b>, <b>Interior Point</b> ve <b>Dynamic Programming</b>.</p>
         <div class="how">

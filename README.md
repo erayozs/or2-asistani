@@ -1,13 +1,13 @@
 <img src="assets/icon.svg" width="64" height="64" alt="">
 
-# OR II · Quiz Hazırlık
+# OR 2 Asistanı
 
 İTÜ Yöneylem Araştırması II (Topcu & Kabak ders notları) için interaktif çalışma platformu.
 > **Not:** Bu, Prof. Dr. Y. İlker Topcu & Prof. Dr. Özgür Kabak'ın *Operations Research II* ders notlarına dayanan
 > **gayriresmî** bir çalışma aracıdır; hocalar veya İTÜ ile bağlantılı değildir. Notlardaki örneklerin çoğu
 > Winston, *Operations Research: Applications and Algorithms* kaynaklıdır. Asıl kaynak ders notlarıdır.
 
-Canlı: https://erayozs.github.io/or-ii/
+Canlı: https://erayozs.github.io/or2-asistani/
 
 Kapsam: ders notlarının tamamı — **Bölüm 1–2** (IP formülasyonu ve çözümü, Cutting Planes, Branch & Cut/Price), **Bölüm 3** Goal Programming, **Bölüm 4** Nonlinear Programming, **Bölüm 5** Interior Point, **Bölüm 6** Dynamic Programming.
 
