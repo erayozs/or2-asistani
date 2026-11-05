@@ -119,7 +119,7 @@
           <div><b>4 · Karışık Quiz</b><br>Seçtiğin konulardan rastgele soru + üretilmiş problemlerle deneme sınavı.</div>
         </div>
         <div class="herobtns"><a class="btn primary" href="#/t/2.4">B&amp;B'ye başla →</a><a class="btn ghost" href="#/quiz">🎯 Karışık quiz</a><a class="btn ghost" href="#/t/1.0">Baştan başla</a><a class="btn ghost" href="#/t/3.0">GP</a><a class="btn ghost" href="#/t/4.1">NLP</a><a class="btn ghost" href="#/t/6.1">DP</a></div>
-        <p class="disclaimer">Prof. Dr. Y. İlker Topcu &amp; Prof. Dr. Özgür Kabak'ın <i>Operations Research II</i> ders notlarına dayanan, <b>gayriresmî</b> bir çalışma aracıdır; hocalar veya İTÜ ile bağlantılı değildir. Notlardaki örneklerin çoğu Winston, <i>Operations Research: Applications and Algorithms</i> kaynaklıdır. Hata görürsen asıl kaynak ders notlarıdır.</p>
+        <p class="disclaimer">Prof. Dr. Y. İlker Topcu &amp; Prof. Dr. Özgür Kabak'ın <i>Operations Research II</i> ders notlarına dayanan, <b>gayriresmî</b> bir çalışma aracıdır; hocalar veya İTÜ ile bağlantılı değildir. Notlardaki örneklerin çoğu Winston, <i>Operations Research: Applications and Algorithms</i> kaynaklıdır. Bu sitedeki özet ve sorularda hata olabilir; bir yerde emin olamazsan ders notlarını esas al.</p>
       </section>
       <h2 class="sec">🧮 Problem üreticileri</h2>
       ${drillCards || '<p class="muted">Yükleniyor…</p>'}

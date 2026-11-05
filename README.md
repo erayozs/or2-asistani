@@ -5,7 +5,8 @@
 İTÜ Yöneylem Araştırması II (Topcu & Kabak ders notları) için interaktif çalışma platformu.
 > **Not:** Bu, Prof. Dr. Y. İlker Topcu & Prof. Dr. Özgür Kabak'ın *Operations Research II* ders notlarına dayanan
 > **gayriresmî** bir çalışma aracıdır; hocalar veya İTÜ ile bağlantılı değildir. Notlardaki örneklerin çoğu
-> Winston, *Operations Research: Applications and Algorithms* kaynaklıdır. Asıl kaynak ders notlarıdır.
+> Winston, *Operations Research: Applications and Algorithms* kaynaklıdır. Bu sitedeki özet ve sorularda hata olabilir;
+> bir yerde emin olamazsan ders notlarını esas al.
 
 Canlı: https://erayozs.github.io/or2-asistani/
 
