@@ -80,9 +80,8 @@
       OR.topics.filter((t) => t.ch === ch).forEach((t) => {
         const sc = topicScore(t);
         const badge = sc === null ? '' : `<span class="badge ${sc >= 80 ? 'hi' : sc >= 50 ? 'mid' : 'lo'}">%${sc}</span>`;
-        const focus = '';
         const active = cur.startsWith('#/t/' + t.id + '/') || cur === '#/t/' + t.id || (cur.startsWith('#/d/') && t.drills.includes(cur.split('/')[2]));
-        h += `<a class="nav-t${focus}${active ? ' active' : ''}" href="#/t/${t.id}"><span class="tid">${OR.topicLabel(t)}</span><span class="tt">${esc(t.title)}</span>${badge}</a>`;
+        h += `<a class="nav-t${active ? ' active' : ''}" href="#/t/${t.id}"><span class="tid">${OR.topicLabel(t)}</span><span class="tt">${esc(t.title)}</span>${badge}</a>`;
       });
     });
     h += `<div class="nav-ch">Diğer</div>
@@ -96,6 +95,17 @@
     const drillCards = Object.keys(OR.chapters).map(Number).map((ch) => {
       const ids = OR.topics.filter((t) => t.ch === ch).flatMap((t) => t.drills).filter((id) => OR.drills[id]);
       return ids.length ? `<h3 class="subsec">${OR.chapters[ch]}</h3><div class="cards">${ids.map((id) => drillCard(OR.drills[id])).join('')}</div>` : '';
+    }).join('');
+    const chapterCards = Object.keys(OR.chapters).map(Number).map((ch) => {
+      const ts = OR.topics.filter((t) => t.ch === ch);
+      const nq = ts.reduce((n, t) => n + (OR.content.concepts[t.id] || []).length, 0);
+      const nd = ts.flatMap((t) => t.drills).filter((id) => OR.drills[id]).length;
+      const [, name] = OR.chapters[ch].split(' · ');
+      return `<a class="dcard" href="#/t/${ts[0].id}">
+        <div class="dtop"><span class="dtopic">Bölüm ${ch}</span></div>
+        <div class="dtitle">${esc(name || OR.chapters[ch])}</div>
+        <div class="ddesc">${ts.length} konu · ${nq} kavram sorusu${nd ? ` · ${nd} alıştırma` : ''}</div>
+        <div class="dgo">Başla →</div></a>`;
     }).join('');
     const p = OR.progress.all();
     const rows = OR.topics
@@ -118,9 +128,11 @@
           <div><b>3 · Alıştırma</b><br>Her seferinde <b>yeni sayılarla üretilen</b> problemler, adım adım çözülür ve anında kontrol edilir.</div>
           <div><b>4 · Karışık Quiz</b><br>Seçtiğin konulardan rastgele soru + üretilmiş problemlerle deneme sınavı.</div>
         </div>
-        <div class="herobtns"><a class="btn primary" href="#/t/2.4">B&amp;B'ye başla →</a><a class="btn ghost" href="#/quiz">🎯 Karışık quiz</a><a class="btn ghost" href="#/t/1.0">Baştan başla</a><a class="btn ghost" href="#/t/3.0">GP</a><a class="btn ghost" href="#/t/4.1">NLP</a><a class="btn ghost" href="#/t/6.1">DP</a></div>
+        <div class="herobtns"><a class="btn primary" href="#/t/1.0">Baştan başla →</a><a class="btn ghost" href="#/quiz">🎯 Karışık quiz</a><a class="btn ghost" href="#/cheat">📇 Formül kartı</a></div>
         <p class="disclaimer">Prof. Dr. Y. İlker Topcu &amp; Prof. Dr. Özgür Kabak'ın <i>Operations Research II</i> ders notlarına dayanan, <b>gayriresmî</b> bir çalışma aracıdır; hocalar veya İTÜ ile bağlantılı değildir. Notlardaki örneklerin çoğu Winston, <i>Operations Research: Applications and Algorithms</i> kaynaklıdır. Bu sitedeki özet ve sorularda hata olabilir; bir yerde emin olamazsan ders notlarını esas al.</p>
       </section>
+      <h2 class="sec">📚 Bölümler</h2>
+      <div class="cards">${chapterCards}</div>
       <h2 class="sec">🧮 Problem üreticileri</h2>
       ${drillCards || '<p class="muted">Yükleniyor…</p>'}
       <h2 class="sec">📈 İlerleme</h2>
@@ -258,7 +270,7 @@
       <p class="muted">Seçtiğin konulardan rastgele kavram soruları + (istersen) üretilmiş problemler. Deneme sınavı gibi kullan.</p>
       <form class="card quizform">
         <div class="qcol">
-          <div class="qh">Konular <button type="button" class="btn ghost sm" data-sel="all">Tümü</button><button type="button" class="btn ghost sm" data-sel="bnb">B&amp;B (2.4–2.8)</button>${Object.keys(OR.chapters).map((ch) => `<button type="button" class="btn ghost sm" data-sel="ch${ch}">Bölüm ${ch}</button>`).join('')}<button type="button" class="btn ghost sm" data-sel="none">Hiçbiri</button></div>
+          <div class="qh">Konular <button type="button" class="btn ghost sm" data-sel="all">Tümü</button>${Object.keys(OR.chapters).map((ch) => `<button type="button" class="btn ghost sm" data-sel="ch${ch}">Bölüm ${ch}</button>`).join('')}<button type="button" class="btn ghost sm" data-sel="none">Hiçbiri</button></div>
           ${OR.topics
             .map((t) => `<label class="qt"><input type="checkbox" name="topic" value="${t.id}" checked> ${OR.topicLabel(t)} ${esc(t.title)} <small class="muted">(${(OR.content.concepts[t.id] || []).length})</small></label>`)
             .join('')}
@@ -268,7 +280,7 @@
           <label class="dopt">Kavram sorusu sayısı <input type="number" name="n" value="12" min="0" max="80"></label>
           <div class="qh" style="margin-top:14px">Eklenecek üretilmiş problemler</div>
           ${allDrills
-            .map((d) => `<label class="qt"><input type="checkbox" name="drill" value="${d.id}" ${['bnb-pure', 'bnb-knapsack', 'tsp-nnh'].includes(d.id) ? 'checked' : ''}> ${esc(d.title)} <small class="muted">(${d.topic})</small></label>`)
+            .map((d) => `<label class="qt"><input type="checkbox" name="drill" value="${d.id}" ${['logic-constraints', 'bnb-pure', 'gp-graphical', 'hessian-classify', 'dp-inventory'].includes(d.id) ? 'checked' : ''}> ${esc(d.title)} <small class="muted">(${d.topic})</small></label>`)
             .join('')}
           <button class="btn primary" type="submit" style="margin-top:16px">Quiz'i başlat →</button>
         </div>
@@ -278,8 +290,8 @@
       b.addEventListener('click', () => {
         const m = b.dataset.sel;
         form.querySelectorAll('input[name=topic]').forEach((c) => {
-          const t = OR.topicById(c.value), i = OR.topics.indexOf(t);
-          c.checked = m === 'all' || (m === 'bnb' && i >= tIdx('2.4') && i <= tIdx('2.8')) || m === 'ch' + t.ch;
+          const t = OR.topicById(c.value);
+          c.checked = m === 'all' || m === 'ch' + t.ch;
         });
       })
     );

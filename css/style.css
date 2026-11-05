@@ -70,7 +70,6 @@ header.top { position: sticky; top: 0; z-index: 20; height: 56px; display: flex;
 .nav-t.active { background: var(--acc-soft); color: var(--acc); font-weight: 600; }
 .nav-t .tid { min-width: 34px; color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12.5px; }
 .nav-t .tt { flex: 1; }
-.nav-t.focus .tid { color: var(--acc); font-weight: 650; }
 .badge { font-size: 11px; padding: 1px 6px; border-radius: 10px; font-weight: 650; white-space: nowrap; }
 .badge.hi { background: var(--good-soft); color: var(--good); }
 .badge.mid { background: var(--warn-soft); color: var(--warn); }
